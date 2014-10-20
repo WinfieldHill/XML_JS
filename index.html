@@ -1,11 +1,15 @@
 <script type="text/javascript">
 	XML.newDocument = function( rootTagName, namespaceURL ) {
 		var
-			 rootTagName = ( !rootTagName ) ? rootTagName : '';
+			 rootTagName = ( !rootTagName ) ? rootTagName : ''
 			,namespaceURL = ( !namespaceURL ) ? namespaceURL : '';
 
 		if ( document.implementation && document.implementation.createDocument ) {
-			return document.implementation.createDocument( namespaceURL, rootTagName );
+			try {
+				return document.implementation.createDocument( namespaceURL, rootTagName );
+			} catch ( error ) {
+				console.log( 'WTF' + error );
+			};
 		} else {
 			var
 				doc = new ActiveXObject( "MSXML2.DOMDocument" );
